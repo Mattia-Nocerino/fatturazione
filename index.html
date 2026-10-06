@@ -34,3 +34,864 @@ main{max-width:720px;margin:0 auto;padding:16px 16px 104px}
 h1{font-size:1.6rem;line-height:1.15;margin:8px 0 18px;letter-spacing:-.01em}
 h2{font-size:1.05rem;margin:0 0 12px}
 p{margin:0 0 10px}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+.num{font-variant-numeric:tabular-nums}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+label{display:block;font-size:.875rem;color:var(--muted);margin-bottom:12px}
+label > input,label > select,label > textarea{margin-top:4px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--primary);outline-offset:1px}
+.check{display:flex;gap:10px;align-items:center;color:var(--ink);font-size:1rem}
+.check input{width:20px;height:20px;margin:0;accent-color:var(--primary)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.grid3{display:grid;grid-template-columns:2fr 1fr;gap:0 12px}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 14px}
+button.primary{background:var(--primary);color:var(--primary-ink);border-color:var(--primary);font-weight:700}
+a.btn{display:inline-flex;align-items:center;justify-content:center;flex:1 1 140px;text-decoration:none;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 14px;font-weight:700}
+button.link{background:none;border:none;color:var(--primary);padding:6px 0;font-weight:700}
+button.danger{color:var(--bad)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.actions .primary{flex:1 1 auto}
+.banner{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:.92rem}
+
+/* nav */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav.tabs .in{display:flex;max-width:720px;width:100%}
+nav.tabs button{flex:1;border:none;border-radius:0;background:none;padding:12px 4px 13px;color:var(--muted);font-size:.85rem;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav.tabs button svg{width:22px;height:22px}
+nav.tabs button[aria-current="page"]{color:var(--primary);font-weight:700}
+
+/* patient picker */
+.picker{position:relative}
+.sug{list-style:none;margin:6px 0 0;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.sug:empty{display:none}
+.sug li button{width:100%;text-align:left;border:none;background:none;padding:10px;border-radius:8px;display:flex;justify-content:space-between;gap:10px}
+.sug li button:hover,.sug li button.hl{background:var(--soft)}
+.sug .new{color:var(--primary);font-weight:700}
+.pcard{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--soft);border-radius:10px;padding:12px}
+.pcard strong{display:block}
+
+/* rows */
+.row{border-bottom:1px dashed var(--line);padding-bottom:10px;margin-bottom:12px}
+.row .grid3{align-items:end}
+.row-foot{display:flex;justify-content:space-between;align-items:center;min-height:1.4em}
+.field{margin-bottom:12px}
+.flabel{display:block;font-size:.875rem;color:var(--muted);margin-bottom:4px}
+.stepper{display:flex;align-items:stretch}
+.stepper input{text-align:center;border-radius:0;border-left:none;border-right:none;min-width:0;font-variant-numeric:tabular-nums}
+.stepper button{flex:none;width:44px;padding:0;font-size:1.25rem;line-height:1;background:var(--soft);color:var(--primary);font-weight:700}
+.stepper button:first-child{border-radius:10px 0 0 10px}
+.stepper button:last-child{border-radius:0 10px 10px 0}
+.totals{margin-top:6px;border-top:1px solid var(--line);padding-top:10px}
+.totals div{display:flex;justify-content:space-between;padding:2px 0}
+.totals .grand{font-weight:700;font-size:1.15rem;padding-top:6px}
+
+/* lists */
+.list{list-style:none;margin:0;padding:0}
+.list li{border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:none}
+.item{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:none;background:none;border-radius:0;padding:12px 2px}
+.item .l{min-width:0}
+.item .l strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .r{text-align:right;flex:none}
+.pill{display:inline-block;font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:999px;margin-top:3px}
+.pill.pagata{background:var(--ok-bg);color:var(--ok)}
+.pill.aperta{background:var(--soft);color:var(--primary)}
+.pill.scaduta{background:var(--bad-bg);color:var(--bad)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.filters button{padding:6px 12px;border-radius:999px;font-size:.9rem}
+.filters button[aria-pressed="true"]{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.summary .block{margin:0}
+.summary b{display:block;font-size:1.45rem;line-height:1.2}
+.summary .bad b{color:var(--bad)}
+details summary{cursor:pointer;color:var(--primary);font-weight:700;padding:6px 0}
+
+/* sheet */
+.sheet{position:fixed;inset:0;background:var(--bg);z-index:10;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sheet[hidden]{display:none}
+.sheet-bar{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:1}
+.sheet-bar strong{font-size:1.05rem}
+.sheet-body{max-width:720px;margin:0 auto;padding:16px 16px calc(32px + env(safe-area-inset-bottom,0px))}
+
+/* paper: the document itself stays white in both themes */
+.paper{background:#fff;color:#1C2A2F;border-radius:6px;box-shadow:0 1px 0 #0000000f,0 10px 30px -12px #1c2a2f55;padding:22px 20px;margin-bottom:16px;font-size:.88rem;line-height:1.4}
+.p-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.p-head strong{font-size:1.1rem}
+.p-num{text-align:right;flex:none}
+.p-num b{display:block;font-size:1.5rem;color:#2C5D69;line-height:1.1}
+.p-to{margin:18px 0 14px;padding-top:12px;border-top:1px solid #D3DCDA}
+.p-lbl{color:#5B6B70;font-size:.8rem}
+.p-rows{width:100%;border-collapse:collapse}
+.p-rows th{text-align:left;font-weight:700;color:#5B6B70;font-size:.8rem;border-bottom:1px solid #D3DCDA;padding:6px 4px}
+.p-rows td{padding:7px 4px;border-bottom:1px solid #EEF2F1;vertical-align:top}
+.p-rows .n{text-align:right;white-space:nowrap}
+.p-tot{margin:10px 0 0 auto;max-width:280px}
+.p-tot div{display:flex;justify-content:space-between;padding:2px 4px}
+.p-tot .grand{font-weight:700;font-size:1.05rem;border-top:1px solid #1C2A2F;margin-top:4px;padding-top:6px}
+.p-pay{display:flex;gap:16px;align-items:center;margin-top:18px;padding:14px;border:1.5px solid #2C5D69;border-radius:10px}
+.p-pay .qr{flex:none;width:112px;height:112px;background:#fff}
+.p-pay .qr svg{width:100%;height:100%;display:block}
+.p-pay .t{min-width:0;overflow-wrap:anywhere}
+.p-pay .t b{color:#2C5D69}
+.p-paid{margin-top:18px;padding:12px 14px;border-radius:10px;background:#E2F0E7;color:#2E7150;font-weight:700}
+.p-notes{margin-top:16px;color:#5B6B70;font-size:.76rem}
+.payform{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;margin-top:12px}
+
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.92rem;z-index:20;max-width:calc(100% - 32px)}
+.toast[hidden]{display:none}
+@media (max-width:420px){.paper{padding:18px 14px}.p-pay{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion:no-preference){.sheet:not([hidden]){animation:up .18s ease-out}@keyframes up{from{transform:translateY(16px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+<main id="view" aria-live="polite"></main>
+
+<nav class="tabs" aria-label="Sezioni"><div class="in">
+  <button data-nav="nuova"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nuova</button>
+  <button data-nav="fatture"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7M9 8h4"/></svg>Fatture</button>
+  <button data-nav="incassi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.7-3.2 2.8-5 5.5-5s4.8 1.8 5.5 5"/><path d="M17 8v6M14 11h6"/></svg>Pazienti</button>
+  <button data-nav="studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>Studio</button>
+</div></nav>
+
+<section class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet-bar"><strong id="sheet-title"></strong><button data-act="close-sheet">Chiudi</button></div>
+  <div class="sheet-body" id="sheet-body"></div>
+</section>
+<div class="toast" id="toast" role="status" hidden></div>
+<input type="file" id="import-file" accept=".json,application/json" hidden>
+
+<script>
+/* ---------- utilità ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const r2 = n => Math.round((Number(n) + Number.EPSILON) * 100) / 100;
+const eur = n => new Intl.NumberFormat('it-IT', {style:'currency', currency:'EUR'}).format(n || 0);
+const fmtD = iso => iso ? iso.split('-').reverse().join('/') : '';
+const isoOf = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+const today = () => isoOf(new Date());
+const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + Number(n || 0)); return isoOf(d); };
+const daysBetween = (a, b) => Math.round((new Date(b + 'T12:00:00') - new Date(a + 'T12:00:00')) / 864e5);
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+const ascii = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\x20-\x7E]/g, '').trim();
+const parseNum = v => { let s = String(v ?? '').trim(); if (s.includes(',')) s = s.replace(/\./g, '').replace(',', '.'); const n = parseFloat(s); return isNaN(n) ? 0 : n; };
+const fullName = p => [p.nome, p.cognome].filter(Boolean).join(' ');
+const invNum = i => i.numero + '/' + i.anno;
+const METODI = {bonifico:'bonifico', pos:'carta/POS', contanti:'contanti'};
+
+/* ---------- calcoli fiscali (parametri salvati sulla fattura) ---------- */
+function calcInv(righe, p) {
+  const imp = r2(righe.reduce((t, r) => t + parseNum(r.qty) * parseNum(r.prezzo), 0));
+  const enpap = p.enpap ? r2(imp * parseNum(p.enpapPerc) / 100) : 0;
+  const sub = r2(imp + enpap);
+  const bolloDovuto = !!p.bollo && sub > 77.47;
+  const bollo = bolloDovuto && p.bolloCarico ? 2 : 0;
+  return {imp, enpap, sub, bolloDovuto, bollo, tot: r2(sub + bollo)};
+}
+
+/* QR EPC (standard SEPA "BCD"): letto dalle app bancarie per precompilare il bonifico */
+function epcPayload(s, inv) {
+  const iban = String(s.iban || '').replace(/\s/g, '').toUpperCase();
+  if (!/^[A-Z]{2}\d{2}[A-Z0-9]{10,30}$/.test(iban)) return null;
+  return ['BCD', '002', '1', 'SCT', ascii(s.bic).toUpperCase().replace(/\s/g, ''),
+    ascii(s.beneficiario || s.nome).slice(0, 70), iban, 'EUR' + inv.calc.tot.toFixed(2), '', '',
+    ascii('Fattura ' + invNum(inv) + ' del ' + fmtD(inv.data)).slice(0, 140)].join('\n');
+}
+function qrMake(text) { const q = qrcode(0, 'M'); q.addData(text); q.make(); return q; }
+
+function noteLines(s, inv) {
+  const out = [];
+  const dic = inv.params.regime === 'ordinario' ? s.dicituraOrdinario : s.dicituraForfettario;
+  if (dic && dic.trim()) out.push(dic.trim());
+  if (inv.calc.bolloDovuto) out.push("Imposta di bollo di € 2,00 assolta sull'originale.");
+  if (inv.paziente.opposizioneTS) out.push('Il paziente si è opposto alla trasmissione dei dati al Sistema Tessera Sanitaria.');
+  if (inv.note && inv.note.trim()) out.push(inv.note.trim());
+  return out;
+}
+function studioLines(s) {
+  return [s.titolo, s.albo, s.indirizzo,
+    [s.cf && 'C.F. ' + s.cf, s.piva && 'P. IVA ' + s.piva].filter(Boolean).join('   '),
+    [s.email, s.telefono].filter(Boolean).join('   ')].filter(Boolean);
+}
+function totLines(inv) {
+  const c = inv.calc, out = [['Onorario', c.imp]];
+  if (c.enpap) out.push(['Contributo integrativo ENPAP ' + String(inv.params.enpapPerc).replace('.', ',') + '%', c.enpap]);
+  if (c.bollo) out.push(['Marca da bollo', c.bollo]);
+  return out;
+}
+
+/* ---------- impaginazione unica per PDF e immagine ---------- */
+/* painter: text(t,x,y,{size,bold,color,align}), wrap(t,w,{size,bold}), fill(x,y,w,h,rgb), line(x1,y1,x2,y2,rgb,lw), round(x,y,w,h,r,mode,rgb,lw), page() */
+function layoutInvoice(P0, s, inv) {
+  const L = 18, R = 192, W = R - L, P = inv.paziente, c = inv.calc;
+  const teal = [44, 93, 105], ink = [28, 42, 47], muted = [91, 107, 112], line = [211, 220, 218];
+  const T = (t, x, y, o) => P0.text(t, x, y, o);
+  let y = 22;
+
+  T(s.nome || '', L, y, {size: 15, bold: true, color: ink});
+  let yl = y + 5.5;
+  studioLines(s).forEach(t => { P0.wrap(t, 110, {size: 9}).forEach(tt => { T(tt, L, yl, {size: 9, color: muted}); yl += 4.3; }); });
+  T('Fattura n.', R, y - 4, {size: 9, color: muted, align: 'right'});
+  T(invNum(inv), R, y + 4, {size: 20, bold: true, color: teal, align: 'right'});
+  T('del ' + fmtD(inv.data), R, y + 9.5, {size: 9.5, color: ink, align: 'right'});
+
+  y = Math.max(yl, y + 14) + 5;
+  P0.line(L, y, R, y, line, 0.3);
+  y += 7; T('Destinatario', L, y, {size: 8.5, color: muted});
+  y += 5; T(fullName(P), L, y, {size: 11, bold: true, color: ink});
+  [P.cf && 'C.F. ' + P.cf, P.indirizzo, P.citta].filter(Boolean).forEach(t => { y += 4.8; T(t, L, y, {size: 9.5, color: ink}); });
+
+  y += 10;
+  P0.fill(L, y - 4.6, W, 7, [238, 242, 241]);
+  const h = {size: 8.5, color: muted};
+  T('Descrizione', L + 2, y, h); T('Q.tà', 128, y, {...h, align: 'right'});
+  T('Prezzo', 158, y, {...h, align: 'right'}); T('Importo', R - 2, y, {...h, align: 'right'});
+  y += 8;
+  const b = {size: 10, color: ink};
+  inv.righe.forEach(r => {
+    const lines = P0.wrap(r.descr || '', 100, b);
+    lines.forEach((t, k) => T(t, L + 2, y + k * 4.6, b));
+    T(String(parseNum(r.qty)).replace('.', ','), 128, y, {...b, align: 'right'});
+    T(eur(parseNum(r.prezzo)), 158, y, {...b, align: 'right'});
+    T(eur(r2(parseNum(r.qty) * parseNum(r.prezzo))), R - 2, y, {...b, align: 'right'});
+    y += lines.length * 4.6 + 2.4;
+    P0.line(L, y - 2.6, R, y - 2.6, line, 0.3); y += 2.4;
+  });
+
+  y += 3;
+  totLines(inv).forEach(([k, v]) => { T(k, 112, y, {size: 10, color: muted}); T(eur(v), R - 2, y, {...b, align: 'right'}); y += 5.4; });
+  P0.line(112, y - 2.6, R, y - 2.6, ink, 0.4);
+  y += 3.4; T('Totale', 112, y, {size: 12, bold: true, color: ink}); T(eur(c.tot), R - 2, y, {size: 12, bold: true, color: ink, align: 'right'});
+
+  y += 12;
+  if (inv.pagata) {
+    P0.round(L, y, W, 12, 2, 'F', [226, 240, 231]);
+    T('Pagata il ' + fmtD(inv.dataPagamento) + ' con ' + (METODI[inv.metodo] || inv.metodo), L + 5, y + 7.6, {size: 10.5, bold: true, color: [46, 113, 80]});
+    y += 20;
+  } else {
+    const payload = epcPayload(s, inv), boxH = payload ? 44 : 30;
+    P0.round(L, y, W, boxH, 2.5, 'S', teal, 0.5);
+    let tx = L + 6;
+    if (payload) {
+      const q = qrMake(payload), n = q.getModuleCount(), cell = 36 / n;
+      for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) P0.fill(L + 4 + k * cell, y + 4 + r * cell, cell + 0.02, cell + 0.02, [0, 0, 0]);
+      tx = L + 46;
+    }
+    let ty = y + 8.5;
+    T('Pagamento con bonifico', tx, ty, {size: 10.5, bold: true, color: teal});
+    ['IBAN ' + String(s.iban || '').replace(/\s/g, '').toUpperCase().replace(/(.{4})/g, '$1 ').trim(),
+      'Intestato a ' + (s.beneficiario || s.nome || ''),
+      'Causale: Fattura ' + invNum(inv) + ' del ' + fmtD(inv.data),
+      'Importo ' + eur(c.tot) + '   Scadenza ' + fmtD(inv.scadenza)].forEach(t => { ty += 5; T(t, tx, ty, {size: 9.3, color: ink}); });
+    if (payload) { ty += 6.5; P0.wrap("Inquadra il codice con l'app della tua banca: IBAN, importo e causale si compilano da soli.", R - tx - 4, {size: 8.5}).forEach(t => { T(t, tx, ty, {size: 8.5, color: muted}); ty += 3.9; }); }
+    y += boxH + 10;
+  }
+
+  noteLines(s, inv).forEach(t => { P0.wrap(t, W, {size: 8}).forEach(tt => { if (y > 285) y = P0.page(y); T(tt, L, y, {size: 8, color: muted}); y += 3.8; }); y += 1.6; });
+  return y;
+}
+
+function buildPdf(s, inv) {
+  const {jsPDF} = window.jspdf, doc = new jsPDF({unit: 'mm', format: 'a4'});
+  const font = o => { doc.setFont('helvetica', o && o.bold ? 'bold' : 'normal'); doc.setFontSize((o && o.size) || 10); };
+  layoutInvoice({
+    text: (t, x, y, o) => { font(o); const c = o.color || [0, 0, 0]; doc.setTextColor(c[0], c[1], c[2]); doc.text(String(t), x, y, o.align ? {align: o.align} : undefined); },
+    wrap: (t, w, o) => { font(o); return doc.splitTextToSize(String(t), w); },
+    fill: (x, y, w, h, c) => { doc.setFillColor(c[0], c[1], c[2]); doc.rect(x, y, w, h, 'F'); },
+    line: (x1, y1, x2, y2, c, lw) => { doc.setDrawColor(c[0], c[1], c[2]); doc.setLineWidth(lw || 0.3); doc.line(x1, y1, x2, y2); },
+    round: (x, y, w, h, r, mode, c, lw) => { if (mode === 'F') { doc.setFillColor(c[0], c[1], c[2]); } else { doc.setDrawColor(c[0], c[1], c[2]); doc.setLineWidth(lw || 0.3); } doc.roundedRect(x, y, w, h, r, r, mode); },
+    page: () => { doc.addPage(); return 20; }
+  }, s, inv);
+  return doc;
+}
+
+/* immagine PNG: stessa impaginazione su canvas, ritagliata all'altezza del contenuto */
+function buildPng(s, inv) {
+  const k = 6, cv = document.createElement('canvas'); cv.width = 210 * k; cv.height = 400 * k;
+  const g = cv.getContext('2d');
+  g.fillStyle = '#fff'; g.fillRect(0, 0, cv.width, cv.height);
+  const rgb = c => 'rgb(' + c.join(',') + ')';
+  const font = o => { g.font = (o && o.bold ? '700 ' : '400 ') + (((o && o.size) || 10) * 0.3528 * k).toFixed(2) + 'px "Atkinson Hyperlegible", Helvetica, Arial, sans-serif'; };
+  const end = layoutInvoice({
+    text: (t, x, y, o) => { font(o); g.fillStyle = rgb(o.color || [0, 0, 0]); g.textAlign = o.align === 'right' ? 'right' : 'left'; g.fillText(String(t), x * k, y * k); },
+    wrap: (t, w, o) => { font(o); const out = []; let cur = '';
+      String(t).split(/\s+/).forEach(word => { const test = cur ? cur + ' ' + word : word; if (g.measureText(test).width > w * k && cur) { out.push(cur); cur = word; } else cur = test; });
+      if (cur) out.push(cur); return out.length ? out : ['']; },
+    fill: (x, y, w, h, c) => { g.fillStyle = rgb(c); g.fillRect(x * k, y * k, w * k, h * k); },
+    line: (x1, y1, x2, y2, c, lw) => { g.strokeStyle = rgb(c); g.lineWidth = (lw || 0.3) * k; g.beginPath(); g.moveTo(x1 * k, y1 * k); g.lineTo(x2 * k, y2 * k); g.stroke(); },
+    round: (x, y, w, h, r, mode, c, lw) => { g.beginPath(); g.roundRect(x * k, y * k, w * k, h * k, r * k);
+      if (mode === 'F') { g.fillStyle = rgb(c); g.fill(); } else { g.strokeStyle = rgb(c); g.lineWidth = (lw || 0.3) * k; g.stroke(); } },
+    page: y => y
+  }, s, inv);
+  const out = document.createElement('canvas'); out.width = cv.width; out.height = Math.ceil((end + 8) * k);
+  out.getContext('2d').drawImage(cv, 0, 0);
+  /* sincrono: così copia e condivisione restano dentro il tocco dell'utente */
+  const bin = atob(out.toDataURL('image/png').split(',')[1]), a = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i);
+  return new Blob([a], {type: 'image/png'});
+}
+
+/* ---------- stato ---------- */
+const KEY = 'fatture-studio-v1';
+const DEF = {
+  nome:'', titolo:'Psicologa psicoterapeuta', albo:'', indirizzo:'', cf:'', piva:'', iban:'', bic:'', beneficiario:'', email:'', telefono:'',
+  regime:'forfettario', enpap:true, enpapPerc:2, bollo:true, bolloCarico:true, giorniScadenza:15, descrizione:'Seduta di psicoterapia',
+  dicituraForfettario:"Operazione in franchigia da IVA effettuata ai sensi dell'art. 1, commi da 54 a 89, della Legge n. 190/2014 (regime forfettario). Compenso non soggetto a ritenuta d'acconto ai sensi dell'art. 1, comma 67, della Legge n. 190/2014. Prestazione sanitaria esente IVA ai sensi dell'art. 10, comma 1, n. 18, del DPR 633/1972.",
+  dicituraOrdinario:"Prestazione sanitaria esente IVA ai sensi dell'art. 10, comma 1, n. 18, del DPR 633/1972.",
+  msgDaPagare:"Buongiorno {nome}, le invio la fattura n. {numero} del {data} di {totale}.\nPuò pagare con bonifico entro il {scadenza}:\nIBAN {iban}\nIntestato a {intestatario}\nCausale: {causale}\nGrazie, {studio}",
+  emailVia:'gmail',
+  msgPagata:"Buongiorno {nome}, le invio la fattura n. {numero} del {data} di {totale}, già saldata. Grazie, {studio}"
+};
+let S, storageOk = true;
+function load() {
+  let raw = null;
+  try { raw = JSON.parse(localStorage.getItem(KEY) || 'null'); localStorage.setItem(KEY + '-t', '1'); localStorage.removeItem(KEY + '-t'); }
+  catch (e) { storageOk = false; }
+  S = {settings: {...DEF, ...(raw && raw.settings || {})}, patients: (raw && raw.patients) || [], invoices: (raw && raw.invoices) || []};
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(S)); return true; }
+  catch (e) { storageOk = false; toast('Salvataggio non riuscito: la memoria del browser non è disponibile'); return false; }
+}
+const status = i => i.pagata ? 'pagata' : (i.scadenza < today() ? 'scaduta' : 'aperta');
+const STATUS_LBL = {pagata:'Pagata', aperta:'Da incassare', scaduta:'Scaduta'};
+const nextNum = anno => S.invoices.filter(i => i.anno === anno).reduce((m, i) => Math.max(m, i.numero), 0) + 1;
+const patientById = id => S.patients.find(p => p.id === id);
+const sortedPatients = () => [...S.patients].sort((a, b) => norm(a.cognome + a.nome).localeCompare(norm(b.cognome + b.nome)));
+
+/* ---------- download ---------- */
+const dlP = (window.claude && window.claude.use) ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null);
+function say(msg) { const el = document.getElementById('send-msg'); if (el) el.textContent = msg; toast(msg); }
+const framed = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+const MIME = {pdf: 'application/pdf', csv: 'text/csv', json: 'application/json'};
+/* fuori dal salvataggio della piattaforma: condivisione del telefono (PDF allegabile a WhatsApp/Mail), altrimenti download classico */
+function localSave(filename, data, extra, done) {
+  const type = MIME[filename.split('.').pop()] || 'application/octet-stream';
+  const blob = data instanceof Blob ? data : new Blob([data], {type});
+  try {
+    const file = new File([blob], filename, {type});
+    if (navigator.canShare && navigator.canShare({files: [file]})) {
+      let payload = {files: [file]};
+      if (extra && navigator.canShare({files: [file], ...extra})) payload = {files: [file], ...extra};
+      navigator.share(payload).then(() => { say('Condiviso: ' + filename); if (done) done(); })
+        .catch(e => { if (e && e.name === 'AbortError') return say('Condivisione annullata.'); plainDownload(blob, filename, e, done); });
+      return;
+    }
+  } catch (e) { /* passa al download */ }
+  plainDownload(blob, filename, null, done);
+}
+function plainDownload(blob, filename, prev, done) {
+  try {
+    const url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+    say('Download avviato: ' + filename + '. Se non compare nulla, questa vista blocca i download' + (prev ? ' (' + (prev.name || prev.message) + ')' : '') + '.');
+    if (done) done();
+  } catch (e) { say('Download non riuscito: ' + e.message); }
+}
+async function offer(filename, data, extra, done) {
+  if (!framed) return localSave(filename, data, extra, done);
+  say('Preparo il file…');
+  const dl = await dlP;
+  if (!dl) return localSave(filename, data, extra, done);
+  try { await dl.save({filename, data}); say('File pronto: ' + filename); if (done) done(); }
+  catch (e) {
+    const code = e && e.code;
+    if (code === 'declined') return say('Salvataggio annullato.');
+    if (code === 'rate_limited') return say("C'è già una richiesta di salvataggio aperta.");
+    say('Salvataggio non riuscito (' + (code || (e && e.message) || 'errore sconosciuto') + ').');
+  }
+}
+function armed(btn, label) {
+  if (btn.dataset.armed === '1') return true;
+  const old = btn.textContent; btn.dataset.armed = '1'; btn.textContent = label;
+  setTimeout(() => { if (btn.isConnected) { btn.dataset.armed = ''; btn.textContent = old; } }, 4000);
+  return false;
+}
+
+/* ---------- spazio persistente e promemoria backup ---------- */
+const BK = 'fatture-studio-ultimo-backup';
+let persistState = 'attesa';
+async function ensurePersist(ask) {
+  try {
+    if (!(navigator.storage && navigator.storage.persist)) persistState = 'na';
+    else if (await navigator.storage.persisted()) persistState = 'si';
+    else persistState = (await navigator.storage.persist()) ? 'si' : 'no';
+  } catch (e) { persistState = 'na'; }
+  if (ask) toast(persistState === 'si' ? 'Spazio persistente attivo' : 'Il browser non ha concesso lo spazio persistente');
+  if (view === 'studio') render();
+}
+const lastBackup = () => { try { return localStorage.getItem(BK); } catch (e) { return null; } };
+const markBackup = () => { try { localStorage.setItem(BK, today()); } catch (e) {} if (view !== 'studio') render(); };
+function backupBanner() {
+  if (!S.invoices.length) return '';
+  const lb = lastBackup(), days = lb ? daysBetween(lb, today()) : null;
+  if (days !== null && days < 7) return '';
+  return `<div class="banner">${lb ? 'Ultimo backup ' + days + ' giorni fa.' : 'Non hai ancora fatto un backup dei dati.'} <button class="link" data-act="export">Esporta ora</button></div>`;
+}
+const PERSIST_TXT = {
+  si: 'Spazio persistente attivo: il browser non cancellerà i dati da solo per liberare spazio.',
+  no: "Il browser non ha concesso lo spazio persistente. Aggiungi l'app alla schermata Home, usala qualche giorno e riprova.",
+  na: 'Questo browser non supporta lo spazio persistente: il backup è ancora più importante.',
+  attesa: 'Verifica dello spazio persistente in corso…'};
+
+/* ---------- UI generica ---------- */
+let view = 'nuova', sub = null, draft = null, listFilter = 'tutte', listYear = new Date().getFullYear(), listQ = '';
+let toastT;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2800); }
+function go(v, s) { view = v; sub = s || null; render(); window.scrollTo(0, 0); }
+function openSheet(title, html) { $('#sheet-title').textContent = title; $('#sheet-body').innerHTML = html; $('#sheet').hidden = false; $('#sheet').scrollTop = 0; document.body.style.overflow = 'hidden'; }
+function closeSheet() { $('#sheet').hidden = true; document.body.style.overflow = ''; }
+function render() {
+  document.querySelectorAll('[data-nav]').forEach(b => b.toggleAttribute('aria-current', false));
+  const cur = document.querySelector('[data-nav="' + view + '"]'); if (cur) cur.setAttribute('aria-current', 'page');
+  const banner = storageOk ? '' : '<div class="banner">I dati non vengono salvati su questo dispositivo. Esporta un backup da Studio prima di chiudere.</div>';
+  const bb = view === 'studio' ? '' : backupBanner();
+  const html = {nuova: viewNuova, fatture: viewFatture, incassi: viewIncassi, studio: viewStudio}[view]();
+  $('#view').innerHTML = banner + bb + html;
+  if (view === 'nuova') afterNuova();
+}
+
+/* ---------- Nuova / modifica fattura ---------- */
+function newDraft() {
+  return {id:null, numero:nextNum(new Date().getFullYear()), data:today(), patientId:null, np:null, q:'',
+    righe:[{descr:S.settings.descrizione, qty:1, prezzo:''}], pagata:false, dataPagamento:today(), metodo:'bonifico', note:''};
+}
+function draftParams() {
+  if (draft.id) { const inv = S.invoices.find(i => i.id === draft.id); if (inv) return inv.params; }
+  const s = S.settings; return {regime:s.regime, enpap:s.enpap, enpapPerc:parseNum(s.enpapPerc), bollo:s.bollo, bolloCarico:s.bolloCarico};
+}
+function viewNuova() {
+  if (!draft) draft = newDraft();
+  const d = draft, s = S.settings;
+  const warn = !s.nome || !s.iban ? '<div class="banner">Completa nome e IBAN in Studio: servono per intestazione e QR di pagamento.</div>' : '';
+  return `${warn}<h1>${d.id ? 'Modifica fattura ' + esc(d.numero + '/' + d.data.slice(0, 4)) : 'Nuova fattura'}</h1>
+  <section class="block"><div class="grid2">
+    <label>Numero<input id="f-num" inputmode="numeric" value="${esc(d.numero)}"></label>
+    <label>Data<input id="f-data" type="date" value="${esc(d.data)}"></label></div>
+    <p class="small muted" style="margin:0">Numerazione progressiva per anno: ${esc(d.numero)}/${esc(d.data.slice(0, 4))}</p></section>
+  <section class="block"><h2>Paziente</h2><div id="pz-area">${pzArea()}</div></section>
+  <section class="block"><h2>Prestazioni</h2><div id="rows">${rowsHtml()}</div>
+    <button class="link" data-act="add-row">Aggiungi riga</button><div class="totals" id="totals">${totalsHtml()}</div></section>
+  <section class="block"><h2>Pagamento</h2>
+    <label class="check"><input type="checkbox" id="f-pagata" ${d.pagata ? 'checked' : ''}> Già pagata</label>
+    <div id="pay-fields" class="grid2" ${d.pagata ? '' : 'hidden'} style="margin-top:12px">
+      <label>Pagata il<input type="date" id="f-dpag" value="${esc(d.dataPagamento)}"></label>
+      <label>Metodo<select id="f-metodo">${Object.entries(METODI).map(([k, v]) => `<option value="${k}" ${d.metodo === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label></div>
+    <label style="margin:12px 0 0">Note in fattura (facoltative)<textarea id="f-note" rows="2">${esc(d.note)}</textarea></label></section>
+  <div class="actions"><button class="primary" data-act="save-inv">${d.id ? 'Salva modifiche' : 'Salva fattura'}</button>
+    ${d.id ? '<button data-act="cancel-edit">Annulla</button>' : ''}</div>`;
+}
+function pzArea() {
+  const d = draft;
+  if (d.patientId) {
+    const p = patientById(d.patientId); if (!p) { d.patientId = null; return pzArea(); }
+    return `<div class="pcard"><div><strong>${esc(fullName(p))}</strong><span class="small muted">${esc(p.cf || 'Codice fiscale mancante')}${p.citta ? ' – ' + esc(p.citta) : ''}</span></div>
+      <button class="link" data-act="pz-change">Cambia</button></div>`;
+  }
+  if (d.np) return `<div class="grid2">
+      <label>Nome<input data-np="nome" value="${esc(d.np.nome)}"></label><label>Cognome<input data-np="cognome" value="${esc(d.np.cognome)}"></label></div>
+    ${patientFields(d.np, 'data-np')}
+    <button class="link" data-act="pz-change">Cerca tra i pazienti esistenti</button>`;
+  return `<div class="picker"><label style="margin:0">Cerca per nome, cognome o codice fiscale
+      <input id="pz-q" autocomplete="off" placeholder="Inizia a scrivere…" value="${esc(d.q)}" role="combobox" aria-controls="pz-sug" aria-expanded="false"></label>
+    <ul class="sug" id="pz-sug" role="listbox"></ul></div>`;
+}
+function patientFields(p, attr) {
+  return `<label>Codice fiscale<input ${attr}="cf" value="${esc(p.cf)}" autocapitalize="characters" maxlength="16"></label>
+    <label>Indirizzo<input ${attr}="indirizzo" value="${esc(p.indirizzo)}"></label>
+    <div class="grid2"><label>CAP e città<input ${attr}="citta" value="${esc(p.citta)}"></label>
+      <label>Tariffa (si aggiorna all'ultima fattura)<input ${attr}="tariffa" inputmode="decimal" value="${esc(p.tariffa)}"></label></div>
+    <div class="grid2"><label>Cellulare<input ${attr}="telefono" type="tel" value="${esc(p.telefono)}"></label>
+      <label>Email<input ${attr}="email" type="email" value="${esc(p.email)}"></label></div>
+    <label class="check"><input type="checkbox" ${attr}="opposizioneTS" ${p.opposizioneTS ? 'checked' : ''}> Si oppone all'invio dei dati al Sistema TS</label>`;
+}
+function suggestions(q) {
+  const nq = norm(q); if (!nq) return '';
+  const hits = sortedPatients().filter(p => norm(fullName(p)).includes(nq) || norm(p.cognome + ' ' + p.nome).includes(nq) || norm(p.cf).includes(nq)).slice(0, 6);
+  const exact = hits.some(p => norm(fullName(p)) === nq || norm(p.cognome + ' ' + p.nome) === nq);
+  return hits.map((p, i) => `<li><button role="option" data-act="pz-pick" data-id="${p.id}" class="${i === 0 ? 'hl' : ''}"><span>${esc(fullName(p))}</span><span class="small muted">${esc(p.cf || '')}</span></button></li>`).join('')
+    + (exact ? '' : `<li><button role="option" data-act="pz-new" class="new ${hits.length ? '' : 'hl'}">Nuovo paziente: ${esc(q.trim())}</button></li>`);
+}
+function rowsHtml() {
+  return draft.righe.map((r, i) => `<div class="row">
+    <label>Descrizione<input data-row="${i}" data-k="descr" value="${esc(r.descr)}"></label>
+    <div class="grid2"><label>Prezzo a seduta (€)<input data-row="${i}" data-k="prezzo" inputmode="decimal" value="${esc(r.prezzo)}" placeholder="0,00"></label>
+      <div class="field"><span class="flabel">Sedute</span><div class="stepper">
+        <button data-act="qty" data-i="${i}" data-d="-1" aria-label="Una seduta in meno">−</button>
+        <input data-row="${i}" data-k="qty" inputmode="numeric" value="${esc(r.qty)}" aria-label="Numero di sedute">
+        <button data-act="qty" data-i="${i}" data-d="1" aria-label="Una seduta in più">+</button></div></div></div>
+    <div class="row-foot"><span class="small muted num" id="sub-${i}">${rowSub(r)}</span>
+      ${draft.righe.length > 1 ? `<button class="link danger" data-act="del-row" data-i="${i}">Rimuovi riga</button>` : ''}</div></div>`).join('');
+}
+function rowSub(r) {
+  const q = parseNum(r.qty), pz = parseNum(r.prezzo);
+  return q && pz ? `${String(q).replace('.', ',')} × ${eur(pz)} = ${eur(r2(q * pz))}` : '';
+}
+function totalsHtml() {
+  const p = draftParams(), c = calcInv(draft.righe, p);
+  const fake = {calc: c, params: p};
+  return totLines(fake).map(([k, v]) => `<div><span class="muted">${esc(k)}</span><span class="num">${eur(v)}</span></div>`).join('')
+    + (c.bolloDovuto && !c.bollo ? '<div><span class="muted">Marca da bollo a carico dello studio</span><span class="num">–</span></div>' : '')
+    + `<div class="grand"><span>Totale</span><span class="num">${eur(c.tot)}</span></div>`;
+}
+function afterNuova() {
+  const q = $('#pz-q'); if (q) { q.focus({preventScroll: true}); q.setSelectionRange(q.value.length, q.value.length); if (q.value) $('#pz-sug').innerHTML = suggestions(q.value); }
+}
+function pickPatient(id) {
+  draft.patientId = id; draft.np = null; draft.q = '';
+  const p = patientById(id);
+  if (p && p.tariffa && !draft.id) draft.righe.forEach(r => { if (!r.prezzo) r.prezzo = p.tariffa; });
+  $('#pz-area').innerHTML = pzArea(); $('#rows').innerHTML = rowsHtml(); $('#totals').innerHTML = totalsHtml();
+}
+function saveInvoice() {
+  const d = draft, s = S.settings;
+  const numero = parseInt(d.numero, 10), anno = parseInt(d.data.slice(0, 4), 10);
+  if (!numero || numero < 1) return toast('Inserisci un numero di fattura valido');
+  if (!d.data) return toast('Inserisci la data');
+  if (S.invoices.some(i => i.anno === anno && i.numero === numero && i.id !== d.id)) return toast('Esiste già la fattura ' + numero + '/' + anno);
+  let p;
+  if (d.patientId) p = patientById(d.patientId);
+  else if (d.np) {
+    if (!d.np.nome.trim() || !d.np.cognome.trim()) return toast('Inserisci nome e cognome del paziente');
+    p = {id: uid(), ...d.np, cf: (d.np.cf || '').toUpperCase().trim()};
+  } else return toast('Scegli o crea un paziente');
+  const righe = d.righe.filter(r => String(r.descr).trim() || parseNum(r.prezzo)).map(r => ({descr: String(r.descr).trim(), qty: parseNum(r.qty) || 1, prezzo: r2(parseNum(r.prezzo))}));
+  const params = draftParams(), calc = calcInv(righe, params);
+  if (!righe.length || calc.imp <= 0) return toast("Inserisci almeno una prestazione con un importo");
+  if (d.np) S.patients.push(p);
+  if (!d.id) p.tariffa = String(righe[0].prezzo).replace('.', ',');  /* ricorda l'ultima tariffa usata */
+  const old = d.id ? S.invoices.find(i => i.id === d.id) : null;
+  const inv = {id: d.id || uid(), anno, numero, data: d.data,
+    scadenza: old && old.data === d.data ? old.scadenza : addDays(d.data, s.giorniScadenza),
+    patientId: p.id, paziente: {nome: p.nome, cognome: p.cognome, cf: p.cf || '', indirizzo: p.indirizzo || '', citta: p.citta || '', opposizioneTS: !!p.opposizioneTS},
+    righe, params, calc, pagata: d.pagata, dataPagamento: d.pagata ? d.dataPagamento : '', metodo: d.pagata ? d.metodo : '', note: d.note,
+    creata: old ? old.creata : new Date().toISOString()};
+  if (old) S.invoices[S.invoices.indexOf(old)] = inv; else S.invoices.push(inv);
+  if (!save()) return;
+  const cfWarn = !inv.paziente.cf;
+  draft = null; go('fatture'); openInvoice(inv.id);
+  toast(cfWarn ? 'Fattura salvata. Manca il codice fiscale del paziente' : 'Fattura ' + invNum(inv) + ' salvata');
+}
+
+/* ---------- Elenco fatture ---------- */
+function invItem(i) {
+  const st = status(i);
+  return `<li><button class="item" data-act="open-inv" data-id="${i.id}"><span class="l"><strong>${esc(fullName(i.paziente))}</strong>
+    <span class="small muted">n. ${esc(invNum(i))} del ${fmtD(i.data)}</span></span>
+    <span class="r"><span class="num">${eur(i.calc.tot)}</span><br><span class="pill ${st}">${STATUS_LBL[st]}${st === 'scaduta' ? ' da ' + daysBetween(i.scadenza, today()) + ' gg' : ''}</span></span></button></li>`;
+}
+function viewFatture() {
+  const years = [...new Set([new Date().getFullYear(), ...S.invoices.map(i => i.anno)])].sort((a, b) => b - a);
+  const nq = norm(listQ);
+  const list = S.invoices.filter(i => i.anno === listYear)
+    .filter(i => listFilter === 'tutte' || (listFilter === 'pagate' ? i.pagata : !i.pagata))
+    .filter(i => !nq || norm(fullName(i.paziente)).includes(nq) || String(i.numero) === nq)
+    .sort((a, b) => b.numero - a.numero);
+  const yearInv = S.invoices.filter(i => i.anno === listYear);
+  const fatt = yearInv.reduce((t, i) => t + i.calc.tot, 0), inc = yearInv.filter(i => i.pagata).reduce((t, i) => t + i.calc.tot, 0);
+  return `<h1>Fatture</h1>
+  <div class="summary"><div class="block"><span class="small muted">Fatturato ${listYear}</span><b class="num">${eur(fatt)}</b></div>
+    <div class="block"><span class="small muted">Incassato ${listYear}</span><b class="num">${eur(inc)}</b></div></div>
+  <div class="grid3"><label>Cerca<input id="l-q" value="${esc(listQ)}" placeholder="Paziente o numero"></label>
+    <label>Anno<select id="l-year">${years.map(y => `<option ${y === listYear ? 'selected' : ''}>${y}</option>`).join('')}</select></label></div>
+  <div class="filters">${[['tutte', 'Tutte'], ['aperte', 'Da incassare'], ['pagate', 'Pagate']].map(([k, v]) => `<button data-act="filter" data-f="${k}" aria-pressed="${listFilter === k}">${v}</button>`).join('')}</div>
+  <div class="block" style="padding:4px 14px">${list.length ? `<ul class="list">${list.map(invItem).join('')}</ul>`
+    : `<p class="muted" style="padding:12px 0;margin:0">${yearInv.length ? 'Nessuna fattura corrisponde ai filtri.' : 'Nessuna fattura nel ' + listYear + '. Creane una da Nuova.'}</p>`}</div>`;
+}
+
+/* ---------- Dettaglio fattura ---------- */
+function paperHtml(inv) {
+  const s = S.settings, P = inv.paziente;
+  let pay;
+  if (inv.pagata) pay = `<div class="p-paid">Pagata il ${fmtD(inv.dataPagamento)} con ${esc(METODI[inv.metodo] || inv.metodo)}</div>`;
+  else {
+    const payload = epcPayload(s, inv);
+    const qr = payload ? `<div class="qr" aria-label="QR per il bonifico">${qrMake(payload).createSvgTag({cellSize: 4, margin: 0, scalable: true})}</div>` : '';
+    pay = `<div class="p-pay">${qr}<div class="t"><b>Pagamento con bonifico</b><br>IBAN ${esc(String(s.iban || 'non impostato').replace(/\s/g, '').toUpperCase().replace(/(.{4})/g, '$1 ').trim())}<br>
+      Intestato a ${esc(s.beneficiario || s.nome)}<br>Causale: Fattura ${esc(invNum(inv))} del ${fmtD(inv.data)}<br>Scadenza ${fmtD(inv.scadenza)}
+      ${payload ? '' : '<br><span style="color:#A33A2C">Aggiungi un IBAN valido in Studio per mostrare il QR.</span>'}</div></div>`;
+  }
+  return `<div class="paper"><div class="p-head"><div><strong>${esc(s.nome || 'Nome dello studio')}</strong><br>${studioLines(s).map(esc).join('<br>')}</div>
+      <div class="p-num"><span class="p-lbl">Fattura n.</span><b>${esc(invNum(inv))}</b>del ${fmtD(inv.data)}</div></div>
+    <div class="p-to"><span class="p-lbl">Destinatario</span><br><strong>${esc(fullName(P))}</strong><br>${[P.cf && 'C.F. ' + P.cf, P.indirizzo, P.citta].filter(Boolean).map(esc).join('<br>')}</div>
+    <div style="overflow-x:auto"><table class="p-rows"><thead><tr><th>Descrizione</th><th class="n">Q.tà</th><th class="n">Prezzo</th><th class="n">Importo</th></tr></thead><tbody>
+      ${inv.righe.map(r => `<tr><td>${esc(r.descr)}</td><td class="n">${String(r.qty).replace('.', ',')}</td><td class="n">${eur(r.prezzo)}</td><td class="n">${eur(r2(r.qty * r.prezzo))}</td></tr>`).join('')}</tbody></table></div>
+    <div class="p-tot">${totLines(inv).map(([k, v]) => `<div><span>${esc(k)}</span><span>${eur(v)}</span></div>`).join('')}<div class="grand"><span>Totale</span><span>${eur(inv.calc.tot)}</span></div></div>
+    ${pay}<div class="p-notes">${noteLines(s, inv).map(esc).join('<br>')}</div></div>`;
+}
+function openInvoice(id) {
+  const inv = S.invoices.find(i => i.id === id); if (!inv) return;
+  openSheet('Fattura ' + invNum(inv), `${paperHtml(inv)}
+    ${sendHtml(inv)}
+    <div class="actions">
+      ${inv.pagata ? `<button data-act="unpay" data-id="${id}">Segna da incassare</button>` : `<button data-act="pay-open" data-id="${id}">Segna pagata</button>`}</div>
+    <div id="payform"></div>
+    <div class="actions" style="margin-top:14px"><button data-act="edit-inv" data-id="${id}">Modifica</button>
+      <button class="danger" data-act="del-inv" data-id="${id}">Elimina</button></div>`);
+}
+function payFormHtml(id) {
+  return `<div class="block" style="margin-top:12px"><div class="payform">
+    <label>Pagata il<input type="date" id="pf-date" value="${today()}"></label>
+    <label>Metodo<select id="pf-met">${Object.entries(METODI).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label></div>
+    <button class="primary" data-act="pay-confirm" data-id="${id}" style="width:100%">Conferma pagamento</button></div>`;
+}
+function setPaid(id, paid, date, met) {
+  const inv = S.invoices.find(i => i.id === id); if (!inv) return;
+  inv.pagata = paid; inv.dataPagamento = paid ? date : ''; inv.metodo = paid ? met : '';
+  save();
+}
+
+/* ---------- invio al paziente ---------- */
+function msgText(inv) {
+  const s = S.settings, causale = 'Fattura ' + invNum(inv) + ' del ' + fmtD(inv.data);
+  const v = {nome: inv.paziente.nome, paziente: fullName(inv.paziente), numero: invNum(inv), data: fmtD(inv.data), totale: eur(inv.calc.tot),
+    scadenza: fmtD(inv.scadenza), iban: String(s.iban || '').replace(/\s/g, '').toUpperCase(), intestatario: s.beneficiario || s.nome, causale, studio: s.nome};
+  return (inv.pagata ? s.msgPagata : s.msgDaPagare).replace(/\{(\w+)\}/g, (m, k) => k in v ? v[k] : m);
+}
+function waPhone(t) {
+  let d = String(t || '').replace(/[^\d+]/g, '');
+  if (d.startsWith('+')) d = d.slice(1); else if (d.startsWith('00')) d = d.slice(2); else if (/^3\d{8,9}$/.test(d)) d = '39' + d;
+  return d;
+}
+const pdfName = inv => ascii('Fattura ' + inv.numero + '-' + inv.anno + ' ' + inv.paziente.cognome).replace(/[^\w-]+/g, '_') + '.pdf';
+async function sharePdf(inv) {
+  if (!window.jspdf) return say('Il generatore PDF non si è caricato. Controlla la connessione e riapri la pagina.');
+  let blob;
+  try { blob = buildPdf(S.settings, inv).output('blob'); } catch (err) { console.error(err); return say('Errore nella creazione del PDF: ' + err.message); }
+  offer(pdfName(inv), blob, {title: 'Fattura ' + invNum(inv), text: msgText(inv)});
+}
+function shareImage(inv) {
+  let blob; try { blob = buildPng(S.settings, inv); } catch (e) { return say("Errore nella creazione dell'immagine: " + e.message); }
+  localSave(pdfName(inv).replace(/\.pdf$/, '.png'), blob, {title: 'Fattura ' + invNum(inv), text: msgText(inv)});
+}
+function copyImage(inv) {
+  let blob; try { blob = buildPng(S.settings, inv); } catch (e) { return say("Errore nella creazione dell'immagine: " + e.message); }
+  const fp = document.featurePolicy, blocked = fp && fp.allowsFeature && !fp.allowsFeature('clipboard-write');
+  if (blocked || !(navigator.clipboard && navigator.clipboard.write && window.ClipboardItem)) {
+    say('In questa pagina il browser non permette di copiare immagini: la condivido.');
+    return localSave(pdfName(inv).replace(/\.pdf$/, '.png'), blob, {title: 'Fattura ' + invNum(inv), text: msgText(inv)});
+  }
+  navigator.clipboard.write([new ClipboardItem({'image/png': blob})])
+    .then(() => say('Immagine copiata. Apri WhatsApp qui sotto e incollala nella chat (tieni premuto sul campo di testo).'))
+    .catch(e => {
+      say('Copia bloccata dal browser (' + (e.name || e.message) + ').');
+      const el = document.getElementById('send-msg');
+      if (el) el.insertAdjacentHTML('beforeend', ` <button class="link" data-act="share-img" data-id="${inv.id}">Condividi l'immagine</button>`);
+    });
+}
+function sendHtml(inv) {
+  const p = patientById(inv.patientId) || {}, msg = msgText(inv), ph = waPhone(p.telefono);
+  const wa = 'https://wa.me/' + ph + '?text=' + encodeURIComponent(msg);
+  const to = encodeURIComponent((p.email || '').trim()), su = encodeURIComponent('Fattura ' + invNum(inv)), bo = encodeURIComponent(msg);
+  const mail = {gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${su}&body=${bo}`,
+    outlook: `https://outlook.live.com/mail/0/deeplink/compose?to=${to}&subject=${su}&body=${bo}`,
+    app: `mailto:${to}?subject=${su}&body=${bo}`}[S.settings.emailVia] || '';
+  return `<div class="block"><h2>Invia al paziente</h2>
+    <div class="actions"><button class="primary" data-act="pdf" data-id="${inv.id}">Condividi o salva PDF</button></div>
+    <div class="actions"><button data-act="copy-img" data-id="${inv.id}">Copia come immagine</button></div>
+    <div class="actions"><a class="btn" href="${esc(wa)}" target="_blank" rel="noopener">WhatsApp${ph ? '' : ' (scegli contatto)'}</a>
+      <a class="btn" href="${esc(mail)}" target="_blank" rel="noopener">Email${p.email ? '' : ' (senza indirizzo)'}</a></div>
+    <p class="small" id="send-msg" role="status" style="margin:10px 0 0;font-weight:700"></p>
+    <p class="small muted" style="margin:6px 0 0">Per WhatsApp: copia come immagine, poi apri WhatsApp (chat del paziente con il testo pronto) e incolla l'immagine.</p></div>`;
+}
+
+/* ---------- Pazienti e morosità ---------- */
+function viewIncassi() {
+  if (sub) return viewPatient(sub);
+  const open = S.invoices.filter(i => !i.pagata);
+  const tot = open.reduce((t, i) => t + i.calc.tot, 0), scad = open.filter(i => status(i) === 'scaduta').reduce((t, i) => t + i.calc.tot, 0);
+  const groups = {};
+  open.forEach(i => { (groups[i.patientId] = groups[i.patientId] || {id: i.patientId, name: fullName(i.paziente), invs: [], tot: 0, scad: 0, oldest: null}); const g = groups[i.patientId];
+    g.invs.push(i); g.tot += i.calc.tot; if (status(i) === 'scaduta') { g.scad += i.calc.tot; if (!g.oldest || i.scadenza < g.oldest) g.oldest = i.scadenza; } });
+  const arr = Object.values(groups).sort((a, b) => b.scad - a.scad || b.tot - a.tot);
+  const clean = sortedPatients().filter(p => !groups[p.id]);
+  return `<h1>Pazienti</h1>
+  <div class="summary"><div class="block"><span class="small muted">Da incassare</span><b class="num">${eur(tot)}</b></div>
+    <div class="block bad"><span class="small muted">Di cui scaduto</span><b class="num">${eur(scad)}</b></div></div>
+  <div class="block" style="padding:4px 14px"><h2 style="margin:12px 0 4px">Con pagamenti in sospeso</h2>
+    ${arr.length ? `<ul class="list">${arr.map(g => `<li><button class="item" data-act="open-pz" data-id="${g.id}"><span class="l"><strong>${esc(g.name)}</strong>
+      <span class="small muted">${g.invs.length} ${g.invs.length === 1 ? 'fattura' : 'fatture'}${g.oldest ? ', la più vecchia scaduta da ' + daysBetween(g.oldest, today()) + ' gg' : ', nessuna scaduta'}</span></span>
+      <span class="r num">${eur(g.tot)}${g.scad ? `<br><span class="pill scaduta">${eur(g.scad)} scaduti</span>` : '<br><span class="pill aperta">In scadenza</span>'}</span></button></li>`).join('')}</ul>`
+      : '<p class="muted" style="padding:4px 0 12px">Nessun pagamento in sospeso.</p>'}</div>
+  ${clean.length ? `<div class="block" style="padding:4px 14px"><details><summary>In regola (${clean.length})</summary><ul class="list">
+    ${clean.map(p => `<li><button class="item" data-act="open-pz" data-id="${p.id}"><span class="l"><strong>${esc(fullName(p))}</strong><span class="small muted">${esc(p.cf || 'Codice fiscale mancante')}</span></span></button></li>`).join('')}</ul></details></div>` : ''}`;
+}
+function viewPatient(id) {
+  const p = patientById(id);
+  const invs = S.invoices.filter(i => i.patientId === id).sort((a, b) => b.data.localeCompare(a.data) || b.numero - a.numero);
+  if (!p) { sub = null; return viewIncassi(); }
+  const open = invs.filter(i => !i.pagata), totOpen = open.reduce((t, i) => t + i.calc.tot, 0);
+  const totPaid = invs.filter(i => i.pagata).reduce((t, i) => t + i.calc.tot, 0);
+  return `<button class="link" data-act="back-pz">‹ Tutti i pazienti</button>
+  <h1>${esc(fullName(p))}</h1>
+  <div class="block"><p class="small muted" style="margin:0">${[p.cf ? 'C.F. ' + esc(p.cf) : 'Codice fiscale mancante', esc(p.indirizzo), esc(p.citta), p.tariffa ? 'Tariffa ' + eur(parseNum(p.tariffa)) : '', p.opposizioneTS ? 'Opposizione al Sistema TS' : ''].filter(Boolean).join('<br>')}</p>
+    <div class="actions" style="margin-top:12px"><button data-act="edit-pz" data-id="${id}">Modifica dati</button><button data-act="new-for" data-id="${id}">Nuova fattura</button></div></div>
+  <div class="summary"><div class="block bad"><span class="small muted">Da incassare</span><b class="num">${eur(totOpen)}</b></div>
+    <div class="block"><span class="small muted">Incassato in totale</span><b class="num">${eur(totPaid)}</b></div></div>
+  <div class="block" style="padding:4px 14px">${invs.length ? `<ul class="list">${invs.map(invItem).join('')}</ul>` : '<p class="muted" style="padding:12px 0;margin:0">Nessuna fattura per questo paziente.</p>'}</div>`;
+}
+function editPatient(id) {
+  const p = patientById(id);
+  openSheet('Dati paziente', `<div class="block"><div class="grid2"><label>Nome<input data-ep="nome" value="${esc(p.nome)}"></label><label>Cognome<input data-ep="cognome" value="${esc(p.cognome)}"></label></div>
+    ${patientFields(p, 'data-ep')}</div>
+    <p class="small muted">Le fatture già emesse mantengono i dati con cui sono state create.</p>
+    <div class="actions"><button class="primary" data-act="save-pz" data-id="${id}">Salva dati</button>
+    ${S.invoices.some(i => i.patientId === id) ? '' : `<button class="danger" data-act="del-pz" data-id="${id}">Elimina paziente</button>`}</div>`);
+}
+
+/* ---------- Studio ---------- */
+const FIELDS = [['nome', 'Nome e cognome come in fattura'], ['titolo', 'Titolo professionale'], ['albo', 'Iscrizione albo (es. Ordine degli Psicologi della Lombardia n. 12345)'],
+  ['indirizzo', "Indirizzo dello studio"], ['cf', 'Codice fiscale'], ['piva', 'Partita IVA'], ['iban', 'IBAN'], ['bic', 'BIC (facoltativo)'],
+  ['beneficiario', 'Intestatario del conto, se diverso'], ['email', 'Email'], ['telefono', 'Telefono']];
+function viewStudio() {
+  const s = S.settings;
+  const years = [...new Set([new Date().getFullYear(), ...S.invoices.map(i => i.anno)])].sort((a, b) => b - a);
+  return `<h1>Studio</h1>
+  <section class="block"><h2>Dati in fattura</h2>${FIELDS.map(([k, l]) => `<label>${l}<input data-set="${k}" value="${esc(s[k])}" ${k === 'iban' || k === 'cf' || k === 'bic' ? 'autocapitalize="characters"' : ''}></label>`).join('')}</section>
+  <section class="block"><h2>Fiscale</h2>
+    <label>Regime<select data-set="regime"><option value="forfettario" ${s.regime === 'forfettario' ? 'selected' : ''}>Forfettario</option><option value="ordinario" ${s.regime === 'ordinario' ? 'selected' : ''}>Ordinario</option></select></label>
+    <div class="grid3" style="align-items:end"><label class="check" style="margin-bottom:22px"><input type="checkbox" data-set="enpap" ${s.enpap ? 'checked' : ''}> Rivalsa ENPAP</label>
+      <label>Percentuale<input data-set="enpapPerc" inputmode="decimal" value="${esc(s.enpapPerc)}"></label></div>
+    <label class="check"><input type="checkbox" data-set="bollo" ${s.bollo ? 'checked' : ''}> Marca da bollo da € 2 sopra 77,47 €</label>
+    <label class="check"><input type="checkbox" data-set="bolloCarico" ${s.bolloCarico ? 'checked' : ''}> Bollo addebitato al paziente</label>
+    <div class="grid2"><label>Giorni per il pagamento<input data-set="giorniScadenza" inputmode="numeric" value="${esc(s.giorniScadenza)}"></label>
+      <label>Descrizione predefinita<input data-set="descrizione" value="${esc(s.descrizione)}"></label></div>
+    <label>Dicitura regime forfettario<textarea data-set="dicituraForfettario" rows="4">${esc(s.dicituraForfettario)}</textarea></label>
+    <label style="margin:0">Dicitura regime ordinario<textarea data-set="dicituraOrdinario" rows="2">${esc(s.dicituraOrdinario)}</textarea></label>
+    <p class="small muted" style="margin:10px 0 0">Le modifiche valgono per le nuove fatture. Fai verificare diciture e impostazioni al commercialista.</p></section>
+  <section class="block"><h2>Messaggi al paziente</h2>
+    <p class="small muted">Testo precompilato per WhatsApp ed email. Segnaposto: {nome} {paziente} {numero} {data} {totale} {scadenza} {iban} {intestatario} {causale} {studio}</p>
+    <label>Email tramite<select data-set="emailVia">${[['gmail', 'Gmail'], ['outlook', 'Outlook.com'], ['app', 'App di posta del telefono']].map(([k, v]) => `<option value="${k}" ${s.emailVia === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
+    <label>Fattura da pagare<textarea data-set="msgDaPagare" rows="6">${esc(s.msgDaPagare)}</textarea></label>
+    <label style="margin:0">Fattura già pagata<textarea data-set="msgPagata" rows="3">${esc(s.msgPagata)}</textarea></label></section>
+  <section class="block"><h2>Sistema Tessera Sanitaria</h2>
+    <p class="small muted">Riepilogo in CSV delle fatture dell'anno con codice fiscale, pagamento tracciato e opposizione. È un promemoria per l'invio, non il file ufficiale.</p>
+    <div class="grid3" style="align-items:end"><label>Anno<select id="sts-year">${years.map(y => `<option>${y}</option>`).join('')}</select></label>
+      <button data-act="sts" style="margin-bottom:12px">Scarica CSV</button></div></section>
+  <section class="block"><h2>Backup</h2>
+    <p class="small muted">I dati restano solo su questo dispositivo e in questo browser. Esporta un backup ogni tanto e conservalo in un posto sicuro: contiene dati sanitari dei pazienti.</p>
+    <div class="actions"><button class="primary" data-act="export">Esporta backup</button><button data-act="import">Importa backup</button></div>
+    <p class="small muted" style="margin:10px 0 0">${S.patients.length} pazienti, ${S.invoices.length} fatture salvate. Ultimo backup: ${lastBackup() ? fmtD(lastBackup()) : 'mai'}.</p>
+    <p class="small" style="margin:10px 0 0">${PERSIST_TXT[persistState]}${persistState === 'no' ? ' <button class="link" data-act="persist">Richiedi di nuovo</button>' : ''}</p>
+    <p class="small muted" style="margin:6px 0 0">Su iPhone apri sempre l'app dall'icona sulla schermata Home: così i giorni in cui non la usi, come le ferie, non contano per la cancellazione automatica di Safari.</p>
+    ${pendingImport ? `<div class="banner" style="margin:12px 0 0">Il backup contiene ${pendingImport.patients.length} pazienti e ${pendingImport.invoices.length} fatture e sostituirà i dati attuali.
+      <div class="actions" style="margin-top:10px"><button class="primary" data-act="import-ok">Sostituisci i dati</button><button data-act="import-no">Annulla</button></div></div>` : ''}
+    <p class="small" id="send-msg" role="status" style="margin:10px 0 0;font-weight:700"></p></section>`;
+}
+function exportSts(year) {
+  const rows = S.invoices.filter(i => i.anno === year).sort((a, b) => a.numero - b.numero);
+  if (!rows.length) return toast('Nessuna fattura nel ' + year);
+  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const head = ['Numero', 'Data emissione', 'Data pagamento', 'Codice fiscale', 'Paziente', 'Importo prestazione', 'Bollo', 'Pagamento tracciato', 'Opposizione Sistema TS'];
+  const lines = rows.map(i => [invNum(i), fmtD(i.data), fmtD(i.dataPagamento), i.paziente.cf, fullName(i.paziente), i.calc.sub.toFixed(2).replace('.', ','), i.calc.bollo.toFixed(2).replace('.', ','),
+    i.pagata ? (i.metodo === 'contanti' ? 'No' : 'Sì') : 'Non pagata', i.paziente.opposizioneTS ? 'Sì' : 'No'].map(q).join(';'));
+  offer('riepilogo-sistema-ts-' + year + '.csv', '\ufeff' + [head.map(q).join(';'), ...lines].join('\r\n'));
+}
+function importBackup(text) {
+  let data; try { data = JSON.parse(text); } catch (e) { return toast('Il file non è un backup valido'); }
+  if (!data || !Array.isArray(data.patients) || !Array.isArray(data.invoices) || typeof data.settings !== 'object') return toast('Il file non è un backup di questa app');
+  pendingImport = data; render();
+}
+let pendingImport = null;
+function applyImport() {
+  const data = pendingImport; pendingImport = null;
+  S = {settings: {...DEF, ...data.settings}, patients: data.patients, invoices: data.invoices};
+  if (save()) { draft = null; toast('Backup importato'); render(); }
+}
+
+/* ---------- eventi ---------- */
+document.addEventListener('click', e => {
+  const nav = e.target.closest('[data-nav]');
+  if (nav) { closeSheet(); if (nav.dataset.nav === 'nuova' && view !== 'nuova' && draft && draft.id) draft = null; return go(nav.dataset.nav); }
+  const a = e.target.closest('[data-act]'); if (!a) return;
+  const id = a.dataset.id;
+  switch (a.dataset.act) {
+    case 'close-sheet': closeSheet(); render(); break;
+    case 'pz-pick': pickPatient(id); break;
+    case 'pz-new': {
+      const parts = draft.q.trim().split(/\s+/);
+      draft.np = {nome: parts.shift() || '', cognome: parts.join(' '), cf: '', indirizzo: '', citta: '', tariffa: '', email: '', telefono: '', opposizioneTS: false};
+      draft.q = ''; $('#pz-area').innerHTML = pzArea(); break; }
+    case 'pz-change': draft.patientId = null; draft.np = null; $('#pz-area').innerHTML = pzArea(); afterNuova(); break;
+    case 'add-row': draft.righe.push({descr: S.settings.descrizione, qty: 1, prezzo: (patientById(draft.patientId) || {}).tariffa || ''}); $('#rows').innerHTML = rowsHtml(); $('#totals').innerHTML = totalsHtml(); break;
+    case 'qty': { const r = draft.righe[+a.dataset.i]; r.qty = Math.max(1, Math.round(parseNum(r.qty) || 1) + Number(a.dataset.d)); $('#rows').innerHTML = rowsHtml(); $('#totals').innerHTML = totalsHtml(); break; }
+    case 'del-row': draft.righe.splice(+a.dataset.i, 1); $('#rows').innerHTML = rowsHtml(); $('#totals').innerHTML = totalsHtml(); break;
+    case 'save-inv': saveInvoice(); break;
+    case 'cancel-edit': draft = null; go('fatture'); break;
+    case 'filter': listFilter = a.dataset.f; render(); break;
+    case 'open-inv': openInvoice(id); break;
+    case 'pdf': sharePdf(S.invoices.find(i => i.id === id)); break;
+    case 'copy-img': copyImage(S.invoices.find(i => i.id === id)); break;
+    case 'share-img': shareImage(S.invoices.find(i => i.id === id)); break;
+    case 'pay-open': $('#payform').innerHTML = payFormHtml(id); break;
+    case 'pay-confirm': setPaid(id, true, $('#pf-date').value || today(), $('#pf-met').value); openInvoice(id); toast('Fattura segnata come pagata'); break;
+    case 'unpay': setPaid(id, false); openInvoice(id); toast('Fattura segnata da incassare'); break;
+    case 'edit-inv': { const inv = S.invoices.find(i => i.id === id);
+      draft = {id, numero: inv.numero, data: inv.data, patientId: inv.patientId, np: null, q: '', righe: inv.righe.map(r => ({...r})),
+        pagata: inv.pagata, dataPagamento: inv.dataPagamento || today(), metodo: inv.metodo || 'bonifico', note: inv.note || ''};
+      closeSheet(); go('nuova'); break; }
+    case 'del-inv': { const inv = S.invoices.find(i => i.id === id);
+      if (!armed(a, 'Tocca di nuovo per eliminare')) return say("Se la fattura è già stata consegnata al paziente serve una nota di credito, non l'eliminazione.");
+      S.invoices = S.invoices.filter(i => i.id !== id); save(); closeSheet(); render(); toast('Fattura eliminata'); break; }
+    case 'open-pz': go('incassi', id); break;
+    case 'back-pz': go('incassi'); break;
+    case 'new-for': draft = newDraft(); pickPatientInDraft(id); go('nuova'); break;
+    case 'edit-pz': editPatient(id); break;
+    case 'save-pz': { const p = patientById(id), np = {};
+      document.querySelectorAll('[data-ep]').forEach(el => { np[el.dataset.ep] = el.type === 'checkbox' ? el.checked : el.value.trim(); });
+      if (!np.nome || !np.cognome) return toast('Nome e cognome sono obbligatori');
+      np.cf = (np.cf || '').toUpperCase(); Object.assign(p, np); save(); closeSheet(); render(); toast('Dati salvati'); break; }
+    case 'del-pz': if (!armed(a, 'Tocca di nuovo per eliminare')) return; S.patients = S.patients.filter(p => p.id !== id); save(); closeSheet(); go('incassi'); break;
+    case 'sts': exportSts(+$('#sts-year').value); break;
+    case 'export': offer('backup-fatture-' + today() + '.json', JSON.stringify({app: 'fatture-studio', versione: 1, esportato: new Date().toISOString(), ...S}, null, 1), null, markBackup); break;
+    case 'persist': ensurePersist(true); break;
+    case 'import': $('#import-file').click(); break;
+    case 'import-ok': applyImport(); break;
+    case 'import-no': pendingImport = null; render(); break;
+  }
+});
+function pickPatientInDraft(id) { draft.patientId = id; const p = patientById(id); if (p && p.tariffa) draft.righe.forEach(r => { r.prezzo = p.tariffa; }); }
+
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'pz-q') { draft.q = t.value; const s = $('#pz-sug'); s.innerHTML = suggestions(t.value); t.setAttribute('aria-expanded', s.innerHTML ? 'true' : 'false'); return; }
+  if (t.dataset.np) {
+    draft.np[t.dataset.np] = t.type === 'checkbox' ? t.checked : t.value;
+    if (t.dataset.np === 'tariffa') {
+      draft.righe.forEach(r => { if (!r.prezzo || r._auto) { r.prezzo = t.value; r._auto = true; } });
+      $('#rows').innerHTML = rowsHtml(); $('#totals').innerHTML = totalsHtml();
+    }
+    return;
+  }
+  if (t.dataset.row !== undefined) { const i = +t.dataset.row, r = draft.righe[i]; r[t.dataset.k] = t.value; delete r._auto; $('#sub-' + i).textContent = rowSub(r); $('#totals').innerHTML = totalsHtml(); return; }
+  if (t.id === 'f-num') { draft.numero = t.value; return; }
+  if (t.id === 'f-note') { draft.note = t.value; return; }
+  if (t.id === 'l-q') { listQ = t.value; const pos = t.selectionStart; render(); const n = $('#l-q'); n.focus(); n.setSelectionRange(pos, pos); return; }
+  if (t.dataset.set) { const k = t.dataset.set; S.settings[k] = t.type === 'checkbox' ? t.checked : t.value; save(); }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'f-data') { const oldY = draft.data.slice(0, 4); draft.data = t.value || today();
+    if (!draft.id && draft.data.slice(0, 4) !== oldY) draft.numero = nextNum(+draft.data.slice(0, 4)); render(); return; }
+  if (t.id === 'f-pagata') { draft.pagata = t.checked; $('#pay-fields').hidden = !t.checked; return; }
+  if (t.id === 'f-dpag') { draft.dataPagamento = t.value; return; }
+  if (t.id === 'f-metodo') { draft.metodo = t.value; return; }
+  if (t.id === 'l-year') { listYear = +t.value; render(); return; }
+  if (t.dataset.set && t.tagName === 'SELECT') { S.settings[t.dataset.set] = t.value; save(); return; }
+  if (t.dataset.set && t.type === 'checkbox') { S.settings[t.dataset.set] = t.checked; save(); return; }
+  if (t.dataset.np && t.type === 'checkbox') { draft.np[t.dataset.np] = t.checked; return; }
+  if (t.id === 'import-file' && t.files[0]) { const fr = new FileReader(); fr.onload = () => importBackup(fr.result); fr.readAsText(t.files[0]); t.value = ''; }
+});
+document.addEventListener('keydown', e => {
+  if (e.target.id === 'pz-q' && e.key === 'Enter') { e.preventDefault(); const b = $('#pz-sug .hl') || $('#pz-sug button'); if (b) b.click(); }
+  if (e.key === 'Escape' && !$('#sheet').hidden) { closeSheet(); render(); }
+});
+
+load(); render(); ensurePersist(false);
+</script>
+</body>
+</html>
