@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fatture studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --bg:#EEF2F1;--surface:#FFFFFF;--ink:#1C2A2F;--muted:#5B6B70;--line:#D3DCDA;
+  --primary:#2C5D69;--primary-ink:#FFFFFF;--soft:#E1EBEA;
+  --ok:#2E7150;--ok-bg:#E2F0E7;--warn:#965C0A;--warn-bg:#F7EBD7;--bad:#A33A2C;--bad-bg:#F6E1DD;
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111A1C;--surface:#1A2629;--ink:#E4ECEB;--muted:#97A8AC;--line:#2B3B3F;
+  --primary:#86BCC8;--primary-ink:#0D1719;--soft:#22353A;
+  --ok:#7FC79E;--ok-bg:#1D3328;--warn:#E3AA55;--warn-bg:#3A2D17;--bad:#EC8A7A;--bad-bg:#3D211D;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#111A1C;--surface:#1A2629;--ink:#E4ECEB;--muted:#97A8AC;--line:#2B3B3F;
+  --primary:#86BCC8;--primary-ink:#0D1719;--soft:#22353A;
+  --ok:#7FC79E;--ok-bg:#1D3328;--warn:#E3AA55;--warn-bg:#3A2D17;--bad:#EC8A7A;--bad-bg:#3D211D;
+  color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:720px;margin:0 auto;padding:16px 16px 104px}
+h1{font-size:1.6rem;line-height:1.15;margin:8px 0 18px;letter-spacing:-.01em}
+h2{font-size:1.05rem;margin:0 0 12px}
+p{margin:0 0 10px}
