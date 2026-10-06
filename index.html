@@ -272,7 +272,7 @@ function layoutInvoice(P0, s, inv) {
     T('Pagata il ' + fmtD(inv.dataPagamento) + ' con ' + (METODI[inv.metodo] || inv.metodo), L + 5, y + 7.6, {size: 10.5, bold: true, color: [46, 113, 80]});
     y += 20;
   } else {
-    const payload = epcPayload(s, inv), boxH = payload ? 44 : 30;
+    const payload = s.qr !== false ? epcPayload(s, inv) : null, boxH = payload ? 44 : 30;
     P0.round(L, y, W, boxH, 2.5, 'S', teal, 0.5);
     let tx = L + 6;
     if (payload) {
@@ -336,13 +336,14 @@ function buildPng(s, inv) {
 
 /* ---------- stato ---------- */
 const KEY = 'fatture-studio-v1';
+const OLD_MSG_DA_PAGARE = "Buongiorno {nome}, le invio la fattura n. {numero} del {data} di {totale}.\nPuò pagare con bonifico entro il {scadenza}:\nIBAN {iban}\nIntestato a {intestatario}\nCausale: {causale}\nGrazie, {studio}";
 const DEF = {
   nome:'', titolo:'Psicologa psicoterapeuta', albo:'', indirizzo:'', cf:'', piva:'', iban:'', bic:'', beneficiario:'', email:'', telefono:'',
   regime:'forfettario', enpap:true, enpapPerc:2, bollo:true, bolloCarico:true, giorniScadenza:15, descrizione:'Seduta di psicoterapia',
   dicituraForfettario:"Operazione in franchigia da IVA effettuata ai sensi dell'art. 1, commi da 54 a 89, della Legge n. 190/2014 (regime forfettario). Compenso non soggetto a ritenuta d'acconto ai sensi dell'art. 1, comma 67, della Legge n. 190/2014. Prestazione sanitaria esente IVA ai sensi dell'art. 10, comma 1, n. 18, del DPR 633/1972.",
   dicituraOrdinario:"Prestazione sanitaria esente IVA ai sensi dell'art. 10, comma 1, n. 18, del DPR 633/1972.",
-  msgDaPagare:"Buongiorno {nome}, le invio la fattura n. {numero} del {data} di {totale}.\nPuò pagare con bonifico entro il {scadenza}:\nIBAN {iban}\nIntestato a {intestatario}\nCausale: {causale}\nGrazie, {studio}",
-  emailVia:'gmail',
+  msgDaPagare:"Buongiorno {nome}, le invio la fattura n. {numero} del {data} di {totale}, da saldare con bonifico entro il {scadenza}.\n\nIBAN (intestato a {intestatario}):\n{iban}\n\nCausale:\n{causale}\n\nGrazie, {studio}",
+  emailVia:'gmail', qr:true,
   msgPagata:"Buongiorno {nome}, le invio la fattura n. {numero} del {data} di {totale}, già saldata. Grazie, {studio}"
 };
 let S, storageOk = true;
@@ -351,6 +352,7 @@ function load() {
   try { raw = JSON.parse(localStorage.getItem(KEY) || 'null'); localStorage.setItem(KEY + '-t', '1'); localStorage.removeItem(KEY + '-t'); }
   catch (e) { storageOk = false; }
   S = {settings: {...DEF, ...(raw && raw.settings || {})}, patients: (raw && raw.patients) || [], invoices: (raw && raw.invoices) || []};
+  if (S.settings.msgDaPagare === OLD_MSG_DA_PAGARE) S.settings.msgDaPagare = DEF.msgDaPagare;
 }
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(S)); return true; }
@@ -609,11 +611,11 @@ function paperHtml(inv) {
   let pay;
   if (inv.pagata) pay = `<div class="p-paid">Pagata il ${fmtD(inv.dataPagamento)} con ${esc(METODI[inv.metodo] || inv.metodo)}</div>`;
   else {
-    const payload = epcPayload(s, inv);
+    const payload = s.qr !== false ? epcPayload(s, inv) : null;
     const qr = payload ? `<div class="qr" aria-label="QR per il bonifico">${qrMake(payload).createSvgTag({cellSize: 4, margin: 0, scalable: true})}</div>` : '';
     pay = `<div class="p-pay">${qr}<div class="t"><b>Pagamento con bonifico</b><br>IBAN ${esc(String(s.iban || 'non impostato').replace(/\s/g, '').toUpperCase().replace(/(.{4})/g, '$1 ').trim())}<br>
       Intestato a ${esc(s.beneficiario || s.nome)}<br>Causale: Fattura ${esc(invNum(inv))} del ${fmtD(inv.data)}<br>Scadenza ${fmtD(inv.scadenza)}
-      ${payload ? '' : '<br><span style="color:#A33A2C">Aggiungi un IBAN valido in Studio per mostrare il QR.</span>'}</div></div>`;
+      ${payload || s.qr === false ? '' : '<br><span style="color:#A33A2C">Aggiungi un IBAN valido in Studio per mostrare il QR.</span>'}</div></div>`;
   }
   return `<div class="paper"><div class="p-head"><div><strong>${esc(s.nome || 'Nome dello studio')}</strong><br>${studioLines(s).map(esc).join('<br>')}</div>
       <div class="p-num"><span class="p-lbl">Fattura n.</span><b>${esc(invNum(inv))}</b>del ${fmtD(inv.data)}</div></div>
@@ -756,6 +758,7 @@ function viewStudio() {
     <label>Regime<select data-set="regime"><option value="forfettario" ${s.regime === 'forfettario' ? 'selected' : ''}>Forfettario</option><option value="ordinario" ${s.regime === 'ordinario' ? 'selected' : ''}>Ordinario</option></select></label>
     <div class="grid3" style="align-items:end"><label class="check" style="margin-bottom:22px"><input type="checkbox" data-set="enpap" ${s.enpap ? 'checked' : ''}> Rivalsa ENPAP</label>
       <label>Percentuale<input data-set="enpapPerc" inputmode="decimal" value="${esc(s.enpapPerc)}"></label></div>
+    <label class="check"><input type="checkbox" data-set="qr" ${s.qr !== false ? 'checked' : ''}> QR per il bonifico sulla fattura (lo leggono solo alcune app bancarie)</label>
     <label class="check"><input type="checkbox" data-set="bollo" ${s.bollo ? 'checked' : ''}> Marca da bollo da € 2 sopra 77,47 €</label>
     <label class="check"><input type="checkbox" data-set="bolloCarico" ${s.bolloCarico ? 'checked' : ''}> Bollo addebitato al paziente</label>
     <div class="grid2"><label>Giorni per il pagamento<input data-set="giorniScadenza" inputmode="numeric" value="${esc(s.giorniScadenza)}"></label>
